@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { getAll } from '../../BooksAPI'
-import Book from './Book';
+import Self from './Self';
 
 export default function ListBooks() {
     const [books, setBooks] = useState([]);
@@ -30,18 +30,7 @@ export default function ListBooks() {
         <div className="list-books-content">
         <div>
             {menuBooks.map(mb => (
-                <div key={mb.shelf} className="bookshelf">
-                    <h2 className="bookshelf-title">{mb.title}</h2>
-                    <div className="bookshelf-books">
-                        <ol className="books-grid">
-                            {books.filter(book => book.shelf === mb.shelf).map(bookIsFiltered => (
-                               <li key={bookIsFiltered.id}>
-                                <Book bookIsFiltered={bookIsFiltered} books={books} setBooks={setBooks}></Book>
-                               </li>
-                            ))}
-                        </ol>
-                    </div>
-                </div>
+                <Self bookshelf={mb} books={books} setBooks={setBooks} ></Self>
             ))}
         </div>
       </div>
